@@ -11,11 +11,11 @@ export default class Screen1 extends Component {
 
         return (
             <View>
-                <Text style='container'>{title}</Text>
-                <Text style='container'>{texto}</Text>
+                <Text>{title}</Text>
+                <Text>{texto}</Text>
                 <Button
                     title="Pulsa para ir a la pantalla 2"
-                    onPress={ () => Actions.screen2() }
+                    onPress={ () => Actions.screen2( { info: 'Info de prueba' } ) }
                 />
             </View>
         );
@@ -23,10 +23,5 @@ export default class Screen1 extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
+
 });

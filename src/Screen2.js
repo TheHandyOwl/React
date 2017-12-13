@@ -8,25 +8,18 @@ export default class Screen2 extends Component {
         title='Título Screen 2';
         texto='Pantalla secundaria';
 
+        info = this.props && this.props.info ? this.props.info : 'Sin información';
+
         return (
             <View>
-                <Text style='container'>{title}</Text>
-                <Text style='container'>{texto}</Text>
+                <Text>{title}</Text>
+                <Text>{texto}</Text>
+                <Text>{info}</Text>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
+
 });
