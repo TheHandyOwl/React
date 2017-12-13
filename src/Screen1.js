@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+
+import { Actions } from 'react-native-router-flux';
 
 export default class Screen1 extends Component {
 
     render() {
-
         title='Título Screen 1';
         texto='Pantalla principal';
 
@@ -12,6 +13,10 @@ export default class Screen1 extends Component {
             <View>
                 <Text style='container'>{title}</Text>
                 <Text style='container'>{texto}</Text>
+                <Button
+                    title="Pulsa para ir a la pantalla 2"
+                    onPress={ () => Actions.screen2() }
+                />
             </View>
         );
     }

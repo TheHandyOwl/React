@@ -22,13 +22,12 @@ export default class App extends Component {
       <Router>
         <Scene key='root'>
           <Scene
-              key='screen1'
+              key={'screen1'}
               component={Screen1}
               title='Pantalla 1'
           />
           <Scene
-            initial='true'
-            key='screen2'
+            key={'screen2'}
             component={Screen2}
             title='Pantalla 2'
           />
