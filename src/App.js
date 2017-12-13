@@ -2,12 +2,21 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default class App extends Component {
+
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      title: 'Título de la app',
+      texto: 'Hola mundo'
+    }
+  }
+
   render() {
-    const title='Bienvenido';
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          {title}!
+          {this.state.title}!
         </Text>
       </View>
     );
