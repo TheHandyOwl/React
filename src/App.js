@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { Actions, Scene, Router } from 'react-native-router-flux';
+
+import Screen1 from 'RepasoParaProbar/src/Screen1';
+import Screen2 from 'RepasoParaProbar/src/Screen2';
+
 export default class App extends Component {
 
   constructor(props){
@@ -12,33 +17,25 @@ export default class App extends Component {
     }
   }
 
-  componentWillMount() {
-    setInterval(() => {
-      this.setState( { title: 'Hemos cambiado el título'} );
-    }, 3000);
-  }
-
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          {this.state.title}!
-        </Text>
-      </View>
+      <Router>
+        <Scene key='root'>
+          <Scene
+              key='screen1'
+              component={Screen1}
+          />
+          <Scene
+            initial='true'
+            key='screen2'
+            component={Screen2}
+          />
+        </Scene>
+      </Router>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
+
 });
