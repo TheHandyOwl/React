@@ -24,11 +24,13 @@ export default class App extends Component {
           <Scene
               key='screen1'
               component={Screen1}
+              title='Pantalla 1'
           />
           <Scene
             initial='true'
             key='screen2'
             component={Screen2}
+            title='Pantalla 2'
           />
         </Scene>
       </Router>
