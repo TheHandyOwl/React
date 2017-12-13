@@ -12,6 +12,12 @@ export default class App extends Component {
     }
   }
 
+  componentWillMount() {
+    setInterval(() => {
+      this.setState( { title: 'Hemos cambiado el título'} );
+    }, 3000);
+  }
+
   render() {
     return (
       <View style={styles.container}>
