@@ -35,7 +35,7 @@ export default class HousesList extends Component {
                 <Text>{ index }.- { item.nombre }</Text>
                 <Button
                     title={item.nombre}
-                    onPress={ () => console.log("Han pulsado en ", item.nombre) }
+                    onPress={ () => console.log("Has pulsado en ", item.nombre) }
                 />
             </View>
         )
