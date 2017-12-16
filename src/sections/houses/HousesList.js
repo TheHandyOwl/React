@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 
 import axios from 'axios'
 
@@ -27,6 +27,20 @@ export default class HousesList extends Component {
         })
     }
 
+    renderItem(item, index) {
+        console.log("item: ", item)
+        console.log("index: ", index)
+        return(
+            <View>
+                <Text>{ index }.- { item.nombre }</Text>
+                <Button
+                    title={item.nombre}
+                    onPress={ () => console.log("Han pulsado en ", item.nombre) }
+                />
+            </View>
+        )
+    }
+
     render() {
         texto='Listado de casas';
         console.log("Recuperamos this.state.list: ", this.state.list);
@@ -34,6 +48,10 @@ export default class HousesList extends Component {
         return (
             <View>
                 <Text>{texto}</Text>
+                <FlatList
+                    data={this.state.list}
+                    renderItem={ ( { item, index } ) => this.renderItem(item, index) }
+                />
             </View>
         );
     }
