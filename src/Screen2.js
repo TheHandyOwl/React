@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 export default class Screen2 extends Component {
 
@@ -15,6 +16,10 @@ export default class Screen2 extends Component {
                 <Text>{title}</Text>
                 <Text>{texto}</Text>
                 <Text>{info}</Text>
+                <Button
+                    title="Volver"
+                    onPress={ () => { Actions.pop() } }
+                />
             </View>
         );
     }
