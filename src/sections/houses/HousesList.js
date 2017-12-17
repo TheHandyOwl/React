@@ -15,15 +15,10 @@ export default class HousesList extends Component {
 
     componentWillMount(){
         console.log("AsyncCalls: ", AsyncCalls)
-        AsyncCalls.fetchHousesList()
-            .then( (response) => {
-                console.log("axios get response: ", response);
-                const list = response.data && response.data.records ? response.data.records : []
-                this.setState( { list: list } )
-            })
-            .catch( (error) => {
-                console.log("axios get error: ", error);
-            })
+        AsyncCalls.fetchHousesList().then( response => {
+            console.log("response", response)
+            this.setState( { list: response } )
+        })
     }
 
     checkIsSelected(item) {
