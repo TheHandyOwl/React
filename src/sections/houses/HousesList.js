@@ -36,6 +36,11 @@ export default class HousesList extends Component {
         }
     }
 
+    onSelectedItem(item) {
+
+        this.setState( { selected: item } )
+    }
+
     renderItem(item, index) {
         const isSelected = this.checkIsSelected(item)
         const cellStyle = isSelected ? { backgroundColor: Colors.red } : { backgroundColor: Colors.yellow }
@@ -47,10 +52,7 @@ export default class HousesList extends Component {
                 <Text style={ titleStyle }>{ index }.- { item.nombre }</Text>
                 <Button
                     title={item.nombre}
-                    onPress={ () => {
-                            this.setState( { selected: item } )
-                        }
-                    }
+                    onPress={ () => { this.onSelectedItem(item) } }
                     color={titleColor}
                 />
             </View>
