@@ -35,7 +35,11 @@ export default class HousesList extends Component {
                 <Text>{ index }.- { item.nombre }</Text>
                 <Button
                     title={item.nombre}
-                    onPress={ () => console.log("Has pulsado en ", item.nombre) }
+                    onPress={ () => {
+                            this.setState( { selected: item } )
+                            console.log("Has pulsado en ", item.nombre)
+                        }
+                    }
                 />
             </View>
         )
@@ -43,11 +47,13 @@ export default class HousesList extends Component {
 
     render() {
         texto='Listado de casas';
+        nombre = this.state.selected && this.state.selected.nombre ?
+            this.state.selected.nombre : 'No se ha pulsado ninguna celda'
         console.log("Recuperamos this.state.list: ", this.state.list);
 
         return (
             <View>
-                <Text>{texto}</Text>
+                <Text>Último seleccionado: { nombre }</Text>
                 <FlatList
                     data={this.state.list}
                     renderItem={ ( { item, index } ) => this.renderItem(item, index) }
