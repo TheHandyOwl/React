@@ -27,11 +27,19 @@ export default class HousesList extends Component {
         })
     }
 
+    checkIsSelected(item) {
+        if( (this.state.selected != null) && (this.state.selected.id == item.id) ) {
+            return { backgroundColor: 'yellow' }
+        } else {
+            return { backgroundColor: 'red' }
+        }
+    }
+
     renderItem(item, index) {
-        console.log("item: ", item)
-        console.log("index: ", index)
-        return(
-            <View>
+        const cellStyle = this.checkIsSelected(item)
+        
+        return(            
+            <View style={ [styles.cell, cellStyle] }>
                 <Text>{ index }.- { item.nombre }</Text>
                 <Button
                     title={item.nombre}
@@ -46,17 +54,18 @@ export default class HousesList extends Component {
     }
 
     render() {
-        texto='Listado de casas';
         const nombre = this.state.selected && this.state.selected.nombre ?
-            this.state.selected.nombre : 'No se ha pulsado ninguna celda'
+            this.state.selected.nombre : 'Seleccione una casa'
         console.log("Recuperamos this.state.list: ", this.state.list);
 
         return (
             <View>
-                <Text>Último seleccionado: { nombre }</Text>
+                <Text style={styles.title}>{ nombre }</Text>
                 <FlatList
                     data={this.state.list}
                     renderItem={ ( { item, index } ) => this.renderItem(item, index) }
+                    // Para forzar el repintado en el FlatList
+                    extraData={this.state}
                 />
             </View>
         );
@@ -65,4 +74,14 @@ export default class HousesList extends Component {
 
 const styles = StyleSheet.create({
 
+    cell: {
+        height: 100,
+        marginVertical: 10
+    },
+    title: {
+        fontSize: 20,
+        textAlign: 'center',
+        marginVertical: 20
+    }
+    
 });
