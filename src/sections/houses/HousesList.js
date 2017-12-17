@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
+import { AsyncCalls, Colors } from 'RepasoParaProbar/src/commons';
 
 import axios from 'axios'
 
@@ -29,24 +30,28 @@ export default class HousesList extends Component {
 
     checkIsSelected(item) {
         if( (this.state.selected != null) && (this.state.selected.id == item.id) ) {
-            return { backgroundColor: 'yellow' }
+            return true
         } else {
-            return { backgroundColor: 'red' }
+            return false
         }
     }
 
     renderItem(item, index) {
-        const cellStyle = this.checkIsSelected(item)
+        const isSelected = this.checkIsSelected(item)
+        const cellStyle = isSelected ? { backgroundColor: Colors.red } : { backgroundColor: Colors.yellow }
+        const titleStyle = isSelected ? { color: Colors.yellow } : { color: Colors.red }
+        const titleColor = isSelected ? Colors.yellow : Colors.red
         
         return(            
             <View style={ [styles.cell, cellStyle] }>
-                <Text>{ index }.- { item.nombre }</Text>
+                <Text style={ titleStyle }>{ index }.- { item.nombre }</Text>
                 <Button
                     title={item.nombre}
                     onPress={ () => {
                             this.setState( { selected: item } )
                         }
                     }
+                    color={titleColor}
                 />
             </View>
         )
