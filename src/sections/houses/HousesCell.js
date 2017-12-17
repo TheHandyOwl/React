@@ -23,7 +23,7 @@ export default class HousesCell extends Component {
                 <Image
                     style={styles.image}
                     source={image}
-                />
+                />/>
             </TouchableOpacity>
         )
     }
@@ -32,13 +32,17 @@ export default class HousesCell extends Component {
 const styles = StyleSheet.create({
 
     container: {
-    },
-    image: {
         margin: 10,
         width: Dimensions.get('window').width / 2 - 20, // 857/600
         height: (Dimensions.get('window').width / 2 - 20 ) * (857/600),
-        backgroundColor: Colors.blue,
+    },
+    image: {
         resizeMode: 'contain', // 'contain', 'cover', 'stretch'
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
     }
     
 });
