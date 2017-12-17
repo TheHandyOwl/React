@@ -52,6 +52,7 @@ export default class HousesList extends Component {
                     extraData={this.state}
                     // Esto quita uno de los warning
                     keyExtractor={ (item, index) => item.id }
+                    numColumns={2}
                 />
             </View>
         );

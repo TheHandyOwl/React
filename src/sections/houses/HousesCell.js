@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, View, Text, StyleSheet , TouchableOpacity } from 'react-native'
+import { Dimensions, Image, View, Text, StyleSheet , TouchableOpacity } from 'react-native'
 import { Colors } from 'RepasoParaProbar/src/commons';
 
 export default class HousesCell extends Component {
@@ -15,16 +15,15 @@ export default class HousesCell extends Component {
         console.log("image: ", image)
         
         return (
-            <View style={styles.container}>
-                <TouchableOpacity
-                    onPress={ () => onSelectItem(item) }
-                >
-                    <Image
-                        style={styles.image}
-                        source={image}
-                    />
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+                style={styles.container}
+                onPress={ () => onSelectItem(item) }
+            >
+                <Image
+                    style={styles.image}
+                    source={image}
+                />
+            </TouchableOpacity>
         )
     }
 }
@@ -32,11 +31,12 @@ export default class HousesCell extends Component {
 const styles = StyleSheet.create({
 
     container: {
-        flex:1
     },
     image: {
-        height: 100,
-        width: 100,
+        margin: 10,
+        width: Dimensions.get('window').width / 2 - 20, // 857/600
+        height: (Dimensions.get('window').width / 2 - 20 ) * (857/600),
+        backgroundColor: Colors.blue,
         resizeMode: 'contain', // 'contain', 'cover', 'stretch'
     }
     
