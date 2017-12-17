@@ -36,7 +36,6 @@ export default class HousesList extends Component {
         return (
             <HousesCell
                 item={item}
-                index={index}
                 onSelectItem={ (house) => this.onSelectItem(house) }
             />
         )

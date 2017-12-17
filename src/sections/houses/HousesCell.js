@@ -1,25 +1,28 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet , TouchableOpacity } from 'react-native'
+import { Image, View, Text, StyleSheet , TouchableOpacity } from 'react-native'
 import { Colors } from 'RepasoParaProbar/src/commons';
 
 export default class HousesCell extends Component {
 
     static defaultProps = {
         item: {},
-        index: null,
         onSelectItem: () => {},
     }
 
     render() {
-        const { item, index, onSelectItem } = this.props
+        const { item, onSelectItem } = this.props
+        const image = item.image_dir ? { uri: item.image_dir } : null
+        console.log("image: ", image)
         
         return (
-            <View>
+            <View style={styles.container}>
                 <TouchableOpacity
-                    style={ styles.button }
                     onPress={ () => onSelectItem(item) }
                 >
-                    <Text>{ index }.- { item.nombre }</Text>
+                    <Image
+                        style={styles.image}
+                        source={image}
+                    />
                 </TouchableOpacity>
             </View>
         )
@@ -28,12 +31,13 @@ export default class HousesCell extends Component {
 
 const styles = StyleSheet.create({
 
-    button: {
-        borderColor: Colors.grey,
-        borderWidth: 3,
-        padding: 10,
-        margin: 20,
-        borderRadius: 12,
+    container: {
+        flex:1
+    },
+    image: {
+        height: 100,
+        width: 100,
+        resizeMode: 'contain', // 'contain', 'cover', 'stretch'
     }
     
 });
