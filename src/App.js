@@ -3,17 +3,14 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Actions, Scene, Router } from 'react-native-router-flux';
 
+import * as webservices from 'RepasoParaProbar/src/webservices/webservices';
+
 import HousesList from 'RepasoParaProbar/src/sections/houses/HousesList';
 
 export default class App extends Component {
 
-  constructor(props){
-    super(props);
-    
-    this.state = {
-      title: 'Título de la app',
-      texto: 'Hola mundo'
-    }
+  componentWillMount() {
+    webservices.configureAxios()
   }
 
   render() {
