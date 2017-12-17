@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import { AsyncCalls, Colors } from 'RepasoParaProbar/src/commons';
 
-import axios from 'axios'
-
 export default class HousesList extends Component {
 
     constructor(props) {
@@ -16,7 +14,8 @@ export default class HousesList extends Component {
     }
 
     componentWillMount(){
-        axios.get('http://146.185.137.85/got/web/casas')
+        console.log("AsyncCalls: ", AsyncCalls)
+        AsyncCalls.fetchHousesList()
         .then( (response) => {
             console.log("axios get response: ", response);
             const list = response.data && response.data.records ? response.data.records : []
