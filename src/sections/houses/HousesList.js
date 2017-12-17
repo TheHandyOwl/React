@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import { AsyncCalls, Colors } from 'RepasoParaProbar/src/commons';
 
+import { fetch } from 'RepasoParaProbar/src/webservices/webservices';
+
 export default class HousesList extends Component {
 
     constructor(props) {
@@ -14,11 +16,15 @@ export default class HousesList extends Component {
     }
 
     componentWillMount(){
-        console.log("AsyncCalls: ", AsyncCalls)
-        AsyncCalls.fetchHousesList().then( response => {
-            console.log("response", response)
-            this.setState( { list: response } )
-        })
+        fetch('/casas')
+            .then( response => {
+                console.log("HousesList fetch response: ", response)
+                this.setState( { list: response.records } )
+            })
+            .catch( error => {
+                console.log("HousesList fetch error:", response)
+                this.setState( { list: [] } )
+            })
     }
 
     checkIsSelected(item) {

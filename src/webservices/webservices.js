@@ -7,3 +7,19 @@ export function configureAxios() {
     //axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
     axios.defaults.headers.post['Content-Type'] = 'application/json';
 }
+
+export function fetch(url) {
+    return axios.get(url)
+        .then( (response) => {
+            console.log("webservie axios get response: ", response);
+
+            if(response.data) {
+                return ( response.data )
+            } else {
+                return ( response )
+            }
+        })
+        .catch( (error) => {
+            return ( error )
+        })
+}
