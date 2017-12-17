@@ -4,6 +4,12 @@ import { Colors } from 'RepasoParaProbar/src/commons';
 
 export default class HousesCell extends Component {
 
+    static defaultProps = {
+        item: {},
+        index: null,
+        onSelectItem: () => {},
+    }
+
     render() {
         const { item, index, onSelectItem } = this.props
         
