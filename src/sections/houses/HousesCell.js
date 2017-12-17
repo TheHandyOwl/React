@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dimensions, Image, View, Text, StyleSheet , TouchableOpacity } from 'react-native'
+import { Dimensions, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Colors } from 'RepasoParaProbar/src/commons';
 
 export default class HousesCell extends Component {
@@ -35,6 +35,18 @@ const styles = StyleSheet.create({
         margin: 10,
         width: Dimensions.get('window').width / 2 - 20, // 857/600
         height: (Dimensions.get('window').width / 2 - 20 ) * (857/600),
+
+        ...Platform.select({
+            ios: {
+              shadowColor: 'rgba(255,255,255,0.1)',
+              shadowOpacity: 1,
+              shadowOffset: { height: 4, width: 4 },
+              shadowRadius: 2,
+            },
+            android: {
+              elevation: 4,
+            },
+        })
     },
     image: {
         resizeMode: 'contain', // 'contain', 'cover', 'stretch'

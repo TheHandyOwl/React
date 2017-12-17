@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
 
 import { Actions, Scene, Router } from 'react-native-router-flux';
 
@@ -11,6 +11,7 @@ export default class App extends Component {
 
   componentWillMount() {
     webservices.configureAxios()
+    StatusBar.setBarStyle('light-content') // iOS StatusBar light style
   }
 
   render() {
@@ -21,6 +22,7 @@ export default class App extends Component {
               key={ 'HousesList' }
               component={ HousesList }
               title='Houses List'
+              hideNavBar
           />
         </Scene>
       </Router>
