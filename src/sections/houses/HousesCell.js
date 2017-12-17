@@ -23,7 +23,7 @@ export default class HousesCell extends Component {
                 <Image
                     style={styles.image}
                     source={image}
-                />/>
+                />
             </TouchableOpacity>
         )
     }
