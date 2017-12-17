@@ -18,6 +18,7 @@ export default class HousesCell extends Component {
             <TouchableOpacity
                 style={styles.container}
                 onPress={ () => onSelectItem(item) }
+                onLayout={ e => this.setState({ layout: e.nativeEvent.layout}) }
             >
                 <Image
                     style={styles.image}
