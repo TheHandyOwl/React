@@ -3,8 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Actions, Scene, Router } from 'react-native-router-flux';
 
-import Screen1 from 'RepasoParaProbar/src/Screen1';
-import Screen2 from 'RepasoParaProbar/src/Screen2';
+import HousesList from 'RepasoParaProbar/src/sections/houses/HousesList';
 
 export default class App extends Component {
 
@@ -22,14 +21,9 @@ export default class App extends Component {
       <Router>
         <Scene key='root'>
           <Scene
-              key={'screen1'}
-              component={Screen1}
-              title='Pantalla 1'
-          />
-          <Scene
-            key={'screen2'}
-            component={Screen2}
-            title='Pantalla 2'
+              key={ 'HousesList' }
+              component={ HousesList }
+              title='Houses List'
           />
         </Scene>
       </Router>
