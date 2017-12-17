@@ -1,0 +1,12 @@
+export const black = 'black'
+export const blue = 'blue'
+export const grey = 'grey'
+export const pink = 'pink'
+export const red = 'red'
+export const yellow = 'yellow'
+export const white = 'white'
+
+export const navBar = 'rgb(36, 36, 36)'
+export const background = 'rgb(42, 42, 42)'
+export const whiteShadowBG = 'rgba(255,255,255,0.2)'
+export const blackShadowBG = 'rgba(0,0,0,0.2)'
