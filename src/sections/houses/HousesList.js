@@ -45,7 +45,6 @@ export default class HousesList extends Component {
                     title={item.nombre}
                     onPress={ () => {
                             this.setState( { selected: item } )
-                            console.log("Has pulsado en ", item.nombre)
                         }
                     }
                 />
@@ -56,7 +55,6 @@ export default class HousesList extends Component {
     render() {
         const nombre = this.state.selected && this.state.selected.nombre ?
             this.state.selected.nombre : 'Seleccione una casa'
-        console.log("Recuperamos this.state.list: ", this.state.list);
 
         return (
             <View>
