@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import { AsyncCalls, Colors } from 'RepasoParaProbar/src/commons';
 
-import { fetch } from 'RepasoParaProbar/src/webservices/webservices';
+import { fetch, fetchAlternativo } from 'RepasoParaProbar/src/webservices/webservices';
 
 export default class HousesList extends Component {
 
@@ -17,7 +17,8 @@ export default class HousesList extends Component {
 
     componentWillMount(){
         //AsyncCalls.fetchHousesList()
-        fetch('/casas')        
+        //fetch('/casas')
+        fetchAlternativo('/casas')
             .then( response => {
                 console.log("HousesList fetch response: ", response)
                 this.setState( { list: response.records } )

@@ -42,3 +42,19 @@ export function fetch(url) {
         })
         */
 }
+
+export function fetchAlternativo(url) {
+    return axios.get(url).then((response) => {
+
+        return response.data
+
+    }).catch((error) => {
+
+        if (error.response) {
+            throw { code: error.response.status, msg: error.response.data, error: error }
+        } else {
+            throw { code: 500, msg: error.message, error: error }
+        }
+
+    });
+}
