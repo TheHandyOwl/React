@@ -66,6 +66,8 @@ export default class HousesList extends Component {
                     renderItem={ ( { item, index } ) => this.renderItem(item, index) }
                     // Para forzar el repintado en el FlatList
                     extraData={this.state}
+                    // Esto quita uno de los warning
+                    keyExtractor={ (item, index) => item.id }
                 />
             </View>
         );
