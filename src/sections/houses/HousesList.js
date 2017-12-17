@@ -16,7 +16,8 @@ export default class HousesList extends Component {
     }
 
     componentWillMount(){
-        fetch('/casas')
+        //AsyncCalls.fetchHousesList()
+        fetch('/casas')        
             .then( response => {
                 console.log("HousesList fetch response: ", response)
                 this.setState( { list: response.records } )

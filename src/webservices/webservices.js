@@ -9,7 +9,25 @@ export function configureAxios() {
 }
 
 export function fetch(url) {
-    return axios.get(url)
+    return new Promise ( function(resolve, reject) {
+        axios.get(url)
+            .then( (response) => {
+                console.log("webservie axios get response: ", response);
+
+                if(response.data) {
+                    resolve ( response.data )
+                } else {
+                    reject ( response )
+                }
+            })
+            .catch( (error) => {
+                reject ( error )
+            })
+        })
+
+        // Ese los mismo, pero sin promise
+        /*
+        return axios.get(url)
         .then( (response) => {
             console.log("webservie axios get response: ", response);
 
@@ -22,4 +40,5 @@ export function fetch(url) {
         .catch( (error) => {
             return ( error )
         })
+        */
 }
