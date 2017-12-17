@@ -28,7 +28,6 @@ export default class HousesList extends Component {
     }
 
     onSelectItem(house) {
-        console.log("house: ", house)
         this.setState({ selected: house })
     }
 
