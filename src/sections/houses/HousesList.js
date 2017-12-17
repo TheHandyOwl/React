@@ -47,7 +47,7 @@ export default class HousesList extends Component {
 
     render() {
         texto='Listado de casas';
-        nombre = this.state.selected && this.state.selected.nombre ?
+        const nombre = this.state.selected && this.state.selected.nombre ?
             this.state.selected.nombre : 'No se ha pulsado ninguna celda'
         console.log("Recuperamos this.state.list: ", this.state.list);
 
