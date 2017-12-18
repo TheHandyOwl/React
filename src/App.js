@@ -35,16 +35,18 @@ export default class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Scene key='root'>
-          <Scene
-              key={ 'HousesList' }
-              component={ HousesList }
-              title='Houses List'
-              hideNavBar
-          />
-        </Scene>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Scene key='root'>
+            <Scene
+                key={ 'HousesList' }
+                component={ HousesList }
+                title='Houses List'
+                hideNavBar
+            />
+          </Scene>
+        </Router>
+      </Provider>
     );
   }
 }
