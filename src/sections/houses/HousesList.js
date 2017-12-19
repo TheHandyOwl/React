@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { AsyncCalls, Colors } from 'RepasoParaProbar/src/commons';
+import { Colors } from 'RepasoParaProbar/src/commons';
 
 import HousesCell from './HousesCell'
 
-export default class HousesList extends Component {
+// redux
+import { connect } from 'react-redux';
+import * as HousesActions from 'RepasoParaProbar/src/redux/actions/houses';
+
+class HousesList extends Component {
 
     constructor(props) {
         super(props)
@@ -16,15 +20,7 @@ export default class HousesList extends Component {
     }
 
     componentWillMount(){
-        AsyncCalls.fetchHousesList()
-            .then( response => {
-                console.log("HousesList fetch response: ", response)
-                this.setState( { list: response.records } )
-            })
-            .catch( error => {
-                console.log("HousesList fetch error:", response)
-                this.setState( { list: [] } )
-            })
+        this.props.fetchHousesList()
     }
 
     onSelectItem(house) {
@@ -41,14 +37,13 @@ export default class HousesList extends Component {
     }
 
     render() {
-
         return (
             <View style={styles.container}>
                 <FlatList
-                    data={this.state.list}
+                    data={this.props.list}
                     renderItem={ ( { item, index } ) => this.renderItem(item, index) }
                     // Para forzar el repintado en el FlatList
-                    extraData={this.state}
+                    extraData={this.props}
                     // Esto quita uno de los warning
                     keyExtractor={ (item, index) => item.id }
                     numColumns={2}
@@ -57,6 +52,23 @@ export default class HousesList extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        list: state.houses.list,
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        fetchHousesList: () => {
+            dispatch(HousesActions.fetchHousesList())
+            // HousesActions.fetchHousesList() ← Aquí fuera no haría nada, no funcionaría
+        }
+    }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (HousesList)
 
 const styles = StyleSheet.create({
 
