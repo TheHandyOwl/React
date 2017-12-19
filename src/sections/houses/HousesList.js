@@ -10,23 +10,12 @@ import * as HousesActions from 'RepasoParaProbar/src/redux/actions/houses';
 
 class HousesList extends Component {
 
-    /*
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            list: [],
-            selected: null,
-        }
-    }
-    */
-
     componentWillMount(){
         this.props.fetchHousesList()
     }
 
     onSelectItem(house) {
-        //this.setState({ selected: house })
+        this.props.updateSelected(house)
     }
 
     renderItem(item, index) {
@@ -39,6 +28,7 @@ class HousesList extends Component {
     }
 
     render() {
+        console.log("Selected: ", this.props.selected)
         return (
             <View style={styles.container}>
                 <FlatList
@@ -58,6 +48,7 @@ class HousesList extends Component {
 const mapStateToProps = (state) => {
     return {
         list: state.houses.list,
+        selected: state.houses.item,
     }
 }
 
@@ -66,7 +57,10 @@ const mapDispatchToProps = (dispatch, props) => {
         fetchHousesList: () => {
             dispatch(HousesActions.fetchHousesList())
             // HousesActions.fetchHousesList() ← Aquí fuera no haría nada, no funcionaría
-        }
+        },
+        updateSelected: (house) => {
+            dispatch(HousesActions.updateHouseSelected(house))
+        },
     }
 }
 
