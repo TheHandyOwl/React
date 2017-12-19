@@ -66,6 +66,9 @@ const mapDispatchToProps = (dispatch, props) => {
         fetchHousesList: () => {
             dispatch(HousesActions.fetchHousesList())
             // HousesActions.fetchHousesList() ← Aquí fuera no haría nada, no funcionaría
+        },
+        updateSelected: () => {
+
         }
     }
 }
