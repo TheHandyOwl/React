@@ -10,6 +10,7 @@ import * as HousesActions from 'RepasoParaProbar/src/redux/actions/houses';
 
 class HousesList extends Component {
 
+    /*
     constructor(props) {
         super(props)
 
@@ -18,13 +19,14 @@ class HousesList extends Component {
             selected: null,
         }
     }
+    */
 
     componentWillMount(){
         this.props.fetchHousesList()
     }
 
     onSelectItem(house) {
-        this.setState({ selected: house })
+        //this.setState({ selected: house })
     }
 
     renderItem(item, index) {
