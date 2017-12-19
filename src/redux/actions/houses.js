@@ -8,6 +8,13 @@ function updateHousesList(value) {
     }
 }
 
+export function updateHouseSelected(value) {
+    return {
+        type: types.HOUSES_UPDATE_HOUSE,
+        value
+    }
+}
+
 export function fetchHousesList() { // Función que carga del WS el listado
     return (dispatch, getState) => {
 

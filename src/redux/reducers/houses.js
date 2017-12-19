@@ -4,9 +4,6 @@ const initialState = {
     isFetching: false,
     list: [],
     item: null,
-    // Para paginación
-    //total: 0,
-    //offset: 0,
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -17,7 +14,12 @@ export default function reducer(state = initialState, action = {}) {
             return {
                 ...state,
                 list: action.value,
-                //item: action.item
+            }
+
+        case types.HOUSES_UPDATE_HOUSE:
+            return {
+                ...state,
+                item: action.value,
             }
             
         default:
