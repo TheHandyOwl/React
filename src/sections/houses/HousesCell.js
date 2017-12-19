@@ -12,7 +12,6 @@ export default class HousesCell extends Component {
     render() {
         const { item, onSelectItem } = this.props
         const image = item.image_dir ? { uri: item.image_dir } : null
-        console.log("image: ", image)
         
         return (
             <TouchableOpacity
