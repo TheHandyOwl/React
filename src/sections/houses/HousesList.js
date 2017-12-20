@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Colors } from 'RepasoParaProbar/src/commons';
 
 import HousesCell from './HousesCell'
@@ -18,6 +18,15 @@ class HousesList extends Component {
         this.props.updateSelected(house)
     }
 
+    renderFooter() {
+        return <ActivityIndicator
+                    animating={this.props.isFetching}
+                    size="large"
+                    color="grey"
+                    style={{ marginVertical: 20 }}
+                />
+    }
+
     renderItem(item, index) {
         return (
             <HousesCell
@@ -28,11 +37,13 @@ class HousesList extends Component {
     }
 
     render() {
-        console.log("Selected: ", this.props.selected)
         return (
             <View style={styles.container}>
                 <FlatList
                     data={this.props.list}
+                    // Header o Footer, pero a mi me sale el activity arriba de las 2 formas
+                    //ListHeaderComponent = { () => this.renderHeader() }
+                    ListFooterComponent = { () => this.renderFooter()}
                     renderItem={ ( { item, index } ) => this.renderItem(item, index) }
                     // Para forzar el repintado en el FlatList
                     extraData={this.props}
@@ -49,6 +60,7 @@ const mapStateToProps = (state) => {
     return {
         list: state.houses.list,
         selected: state.houses.item,
+        isFetching: state.houses.isFetching,
     }
 }
 
