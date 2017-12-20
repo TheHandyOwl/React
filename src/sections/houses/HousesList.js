@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Colors } from 'RepasoParaProbar/src/commons';
+import { Actions } from 'react-native-router-flux'
 
 import HousesCell from './HousesCell'
 
@@ -72,6 +73,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         updateSelected: (house) => {
             dispatch(HousesActions.updateHouseSelected(house))
+            Actions.CharactersList()
         },
     }
 }
@@ -84,6 +86,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.background,
         paddingVertical: 20,
+        paddingTop: 60,
     }
     
 });
