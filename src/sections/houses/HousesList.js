@@ -45,12 +45,12 @@ class HousesList extends Component {
                     // Header o Footer, pero a mi me sale el activity arriba de las 2 formas
                     //ListHeaderComponent = { () => this.renderHeader() }
                     ListFooterComponent = { () => this.renderFooter()}
-                    renderItem={ ( { item, index } ) => this.renderItem(item, index) }
+                    renderItem          = { ( { item, index } ) => this.renderItem(item, index) }
                     // Para forzar el repintado en el FlatList
-                    extraData={this.props}
+                    extraData           = {this.props}
                     // Esto quita uno de los warning
-                    keyExtractor={ (item, index) => item.id }
-                    numColumns={2}
+                    keyExtractor        = { (item, index) => item.id }
+                    numColumns          = {2}
                 />
             </View>
         );

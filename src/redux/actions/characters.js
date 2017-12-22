@@ -28,6 +28,9 @@ export function fetchCharactersList(houseId) { // Función que carga del WS el l
         console.log("fetchCharactersList houseId: ", houseId)
 
         dispatch(setCharactersFetching(true))
+        // Vamos a vaciar la información que hubiese
+        dispatch(updateCharactersList([]))
+
         AsyncCalls.fetchCharactersList(houseId)
             .then( response => {
                 dispatch(setCharactersFetching(false))
