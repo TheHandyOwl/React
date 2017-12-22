@@ -3,20 +3,23 @@ import { ActivityIndicator, FlatList, StyleSheet, Text, View, TouchableOpacity }
 import { Colors } from 'RepasoParaProbar/src/commons';
 import { Actions } from 'react-native-router-flux'
 
-import HousesCell from './HousesCell'
+import CharactersCell from './CharactersCell'
 
 // redux
 import { connect } from 'react-redux';
-import * as HousesActions from 'RepasoParaProbar/src/redux/actions/houses';
+import * as CharactersActions from 'RepasoParaProbar/src/redux/actions/characters';
 
-class HousesList extends Component {
+
+class CharactersList extends Component {
+
 
     componentWillMount(){
-        this.props.fetchHousesList()
+        const houseId = this.props.house ? this.props.house.id : null
+        this.props.fetchCharactersList(houseId)
     }
 
-    onSelectItem(house) {
-        this.props.updateSelected(house)
+    onSelectItem(character) {
+        this.props.updateSelected(character)
     }
 
     renderFooter() {
@@ -30,9 +33,9 @@ class HousesList extends Component {
 
     renderItem(item, index) {
         return (
-            <HousesCell
+            <CharactersCell
                 item={item}
-                onSelectItem={ (house) => this.onSelectItem(house) }
+                onSelectItem={ (character) => this.onSelectItem(character) }
             />
         )
     }
@@ -50,35 +53,35 @@ class HousesList extends Component {
                     extraData           = {this.props}
                     // Esto quita uno de los warning
                     keyExtractor        = { (item, index) => item.id }
-                    numColumns          = {2}
+                    numColumns          = {1}
                 />
             </View>
         );
     }
 }
 
-const mapStateToProps = (state) => {
+mapStateToProps = (state) => {
     return {
-        list: state.houses.list,
-        selected: state.houses.item,
-        isFetching: state.houses.isFetching,
+        house: state.houses.item,
+        list: state.characters.list,
+        selected: state.characters.item,
+        isFetching: state.characters.isFetching,
     }
 }
 
-const mapDispatchToProps = (dispatch, props) => {
+mapDispatchToProps = (dispatch, props) => {
     return {
-        fetchHousesList: () => {
-            dispatch(HousesActions.fetchHousesList())
-            // HousesActions.fetchHousesList() ← Aquí fuera no haría nada, no funcionaría
+        fetchCharactersList: (houseId) => {
+            dispatch(CharactersActions.fetchCharactersList(houseId))
         },
-        updateSelected: (house) => {
-            dispatch(HousesActions.updateHouseSelected(house))
-            Actions.CharactersList( { title: house.nombre } )
+        updateSelected: (character) => {
+            dispatch(CharactersActions.updateCharacterSelected(character))
+            Actions.CharactersList( { title: character.nombre } )
         },
     }
 }
 
-export default connect (mapStateToProps, mapDispatchToProps) (HousesList)
+export default connect(mapStateToProps, mapDispatchToProps) (CharactersList)
 
 const styles = StyleSheet.create({
 
@@ -88,5 +91,4 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingTop: 60,
     }
-    
 });

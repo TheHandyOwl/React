@@ -1,4 +1,4 @@
-import * as types from '../types/houses'
+import * as types from '../types/characters'
 
 const initialState = {
     isFetching: false,
@@ -6,28 +6,28 @@ const initialState = {
     item: null,
 }
 
-export default function reducer(state = initialState, action = {}) {
-    
-    switch (action.type) {
+export default function reducers( state = initialState, action = {} ) {
 
-        case types.HOUSES_UPDATE_LIST:
-            return {
+    switch(action.type) {
+
+        case types.CHARACTERS_UPDATE_LIST:
+            return{
                 ...state,
                 list: action.value,
             }
 
-        case types.HOUSES_UPDATE_HOUSE:
-            return {
+        case types.CHARACTERS_UPDATE_CHARACTER:
+            return{
                 ...state,
                 item: action.value,
             }
 
-        case types.HOUSES_SET_FETCHING:
-            return {
+        case types.CHARACTERS_SET_FETCHING:
+            return{
                 ...state,
                 isFetching: action.value,
             }
-            
+
         default:
             return state
     }
