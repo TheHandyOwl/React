@@ -53,7 +53,7 @@ class CharactersList extends Component {
                     extraData           = {this.props}
                     // Esto quita uno de los warning
                     keyExtractor        = { (item, index) => item.id }
-                    numColumns          = {2}
+                    numColumns          = {1}
                 />
             </View>
         );
