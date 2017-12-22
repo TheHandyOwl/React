@@ -26,6 +26,9 @@ export function fetchHousesList() { // Función que carga del WS el listado
     return (dispatch, getState) => {
 
         dispatch(setHousesFetching(true))
+        // Vamos a vaciar la información que hubiese
+        dispatch(updateHousesList([]))
+
         AsyncCalls.fetchHousesList()
             .then( response => {
                 dispatch(setHousesFetching(false))
