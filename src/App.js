@@ -4,10 +4,12 @@ import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import { Actions, Scene, Router } from 'react-native-router-flux';
 
 import * as webservices from 'RepasoParaProbar/src/webservices/webservices';
+import { Colors } from 'RepasoParaProbar/src/commons'
 
 
 /*************** COMPONENTS ***************/
 import HousesList from 'RepasoParaProbar/src/sections/houses/HousesList';
+import CharactersList from 'RepasoParaProbar/src/sections/characters/CharactersList';
 /******************************************/
 
 
@@ -44,6 +46,13 @@ export default class App extends Component {
                 title='Houses List'
                 hideNavBar
             />
+            <Scene
+                key={ 'CharactersList' }
+                component={ CharactersList }
+                title='Characters List'
+                navigationBarStyle={ styles.navBar }
+                navBarButtonColor={ Colors.white }
+            />
           </Scene>
         </Router>
       </Provider>
@@ -52,5 +61,7 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-
+  navBar: {
+    backgroundColor: Colors.navBar,
+  }
 });
