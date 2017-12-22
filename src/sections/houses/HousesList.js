@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         updateSelected: (house) => {
             dispatch(HousesActions.updateHouseSelected(house))
-            Actions.CharactersList()
+            Actions.CharactersList( { title: house.nombre } )
         },
     }
 }
