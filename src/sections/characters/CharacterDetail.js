@@ -3,7 +3,10 @@ import { Button, Dimensions, Image, StyleSheet, Text, View } from 'react-native'
 
 import { Colors } from 'RepasoParaProbar/src/commons'
 
-export default class CharacterDetail extends Component {
+// Redux
+import { connect } from 'react-redux'
+
+class CharacterDetail extends Component {
 
     onSubmit() {
         console.log("Ha puslado el botón Eliminar")
@@ -11,9 +14,9 @@ export default class CharacterDetail extends Component {
 
     render() {
         const { character } = this.props
-        const nombre = ''
-        const edad = ''
-        const image = null
+        const nombre = character ? character.nombre : ''
+        const edad = character ? character.edad : ''
+        const image = character && character.image_dir? { uri: character.image_dir } : null
 
         return (
             <View style={styles.container}>
@@ -25,7 +28,10 @@ export default class CharacterDetail extends Component {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                    <Button title={'Eliminar'} onPress={ () => this.onSubmit(character) } isFetching={this.props.isFetching} />
+                    <Button
+                        title       = {'Eliminar'}
+                        onPress     = { () => this.onSubmit(character) }
+                        isFetching  = {this.props.isFetching} />
                 </View>
 
             </View>
@@ -33,6 +39,20 @@ export default class CharacterDetail extends Component {
     }
 
 }
+
+const mapStateToProps = (state) => {
+    return {
+        character: state.characters.item,
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        
+    }
+}
+
+export default connect (mapStateToProps, null) ( CharacterDetail )
 
 const styles = StyleSheet.create({
     
