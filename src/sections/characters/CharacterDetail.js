@@ -16,8 +16,8 @@ class CharacterDetail extends Component {
         const { character } = this.props
         const nombre = character ? character.nombre : ''
         const edad = character ? character.edad : ''
-        const image = character && character.image_dir? { uri: character.image_dir } : null
-
+        const image = character && character.image_dir ? { uri: character.image_dir } : require('RepasoParaProbar/src/resources/placeholder.png')
+        
         return (
             <View style={styles.container}>
 
