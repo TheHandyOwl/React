@@ -64,7 +64,7 @@ mapStateToProps = (state) => {
     return {
         house: state.houses.item,
         list: state.characters.list,
-        selected: state.characters.item,
+        character: state.characters.item,
         isFetching: state.characters.isFetching,
     }
 }
@@ -76,7 +76,8 @@ mapDispatchToProps = (dispatch, props) => {
         },
         updateSelected: (character) => {
             dispatch(CharactersActions.updateCharacterSelected(character))
-            Actions.CharactersList( { title: character.nombre } )
+            console.log("Character: ", character)
+            //Actions.CharacterDetail( { title: character.nombre } )
         },
     }
 }
