@@ -10,6 +10,7 @@ import { Colors } from 'RepasoParaProbar/src/commons'
 /*************** COMPONENTS ***************/
 import HousesList from 'RepasoParaProbar/src/sections/houses/HousesList';
 import CharactersList from 'RepasoParaProbar/src/sections/characters/CharactersList';
+import CharacterDetail from 'RepasoParaProbar/src/sections/characters/CharacterDetail';
 /******************************************/
 
 
@@ -50,6 +51,13 @@ export default class App extends Component {
                 key={ 'CharactersList' }
                 component={ CharactersList }
                 title='Characters List'
+                navigationBarStyle={ styles.navBar }
+                navBarButtonColor={ Colors.white }
+            />
+            <Scene
+                key={ 'CharacterDetail' }
+                component={ CharacterDetail }
+                title='Character Detail'
                 navigationBarStyle={ styles.navBar }
                 navBarButtonColor={ Colors.white }
             />

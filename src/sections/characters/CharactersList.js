@@ -76,8 +76,7 @@ mapDispatchToProps = (dispatch, props) => {
         },
         updateSelected: (character) => {
             dispatch(CharactersActions.updateCharacterSelected(character))
-            console.log("Character: ", character)
-            //Actions.CharacterDetail( { title: character.nombre } )
+            Actions.CharacterDetail( { title: character.nombre } )
         },
     }
 }
