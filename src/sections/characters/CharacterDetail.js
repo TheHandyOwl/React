@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Button, Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import { Button } from 'RepasoParaProbar/src/widgets'
 
 import { Colors } from 'RepasoParaProbar/src/commons'
 
@@ -29,9 +30,10 @@ class CharacterDetail extends Component {
 
                 <View style={styles.buttonContainer}>
                     <Button
-                        title       = {'Eliminar'}
+                        label       = {'Eliminar'}
                         onPress     = { () => this.onSubmit(character) }
-                        isFetching  = {this.props.isFetching} />
+                        isFetching  = {this.props.isFetching}
+                    />
                 </View>
 
             </View>

@@ -17,13 +17,19 @@ export default class Button extends Component {
             this.props.onPress()
         }
     }
-
     
     render() {
         return (
             <TouchableOpacity style={[styles.container, this.props.containerStyle]} onPress={ () => this._onPress() } >
                 <Text style={[styles.label, this.props.labelStyle]}>{ this.props.label }</Text>
-                { this.props.isFetching ? <ActivityIndicator animating={true} color={this.props.spinnerColor} style={styles.spinner} /> : null }
+                { this.props.isFetching ?
+                    <ActivityIndicator
+                        animating={true}
+                        color={this.props.spinnerColor}
+                        style={styles.spinner}
+                    />
+                    : null
+                }
             </TouchableOpacity>
         )
     }
