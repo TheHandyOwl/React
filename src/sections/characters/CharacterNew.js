@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { Colors } from 'RepasoParaProbar/src/commons'
 import { Input } from 'RepasoParaProbar/src/widgets'
+import { Button } from 'RepasoParaProbar/src/widgets'
 
 // Redux
 import { connect } from 'react-redux';
@@ -20,17 +21,29 @@ class CharacterNew extends Component {
 
     }
 
+    onSubmit() {
+        console.log("Dar de alta a", this.state.name)
+    }
+
     render() {
         console.log("this.state.name: ", this.state.name)
         return (
             <View style={styles.container}>
-                <Input
-                    onChangeText    = { (v) => this.setState( { name: v } )}
-                    value           = { this.state.name }
-                    error           = { this.state.nameError }
-                    label           = { 'Nombre:' }
-                    placeholder     = { 'Eddard Stark' }
-                />
+                <View style={styles.inputContainer}>    
+                    <Input
+                        onChangeText    = { (v) => this.setState( { name: v } )}
+                        value           = { this.state.name }
+                        error           = { this.state.nameError }
+                        label           = { 'Nombre:' }
+                        placeholder     = { 'Eddard Stark' }
+                    />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <Button
+                        label={'Guardar'}
+                        onPress={ () => this.onSubmit() }
+                    />
+                </View>
             </View>
         )
     }
