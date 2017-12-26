@@ -1,0 +1,34 @@
+import React, { Component } from 'react'
+import { StyleSheet, Text, TextInput  } from 'react-native'
+
+export default class Input extends Component {
+
+    static defaultProps = {
+        labelStyle: {},
+        containerStyle: {},
+        spinnerColor: 'white',
+        label: '',
+        onPress: () => {},
+        isFetching: false,
+    }
+    
+    render() {
+        return (
+            <View style={styles.container}>
+            </View>
+        )
+    }
+}
+
+const styles = StyleSheet.create({
+
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        backgroundColor: 'grey',
+        borderRadius: 4,
+        flexDirection: 'row',
+    },
+
+})
