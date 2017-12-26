@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, TextInput  } from 'react-native'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
 
 export default class Input extends Component {
 
@@ -9,26 +9,21 @@ export default class Input extends Component {
         spinnerColor: 'white',
         label: '',
         onPress: () => {},
-        isFetching: false,
+            isFetching: false,
     }
     
     render() {
-        return (
-            <View style={styles.container}>
-            </View>
-        )
+            return (
+                <View style={styles.container}>
+                </View>
+            )
+        }
     }
-}
 
-const styles = StyleSheet.create({
+    const styles = StyleSheet.create({
 
-    container: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 10,
-        backgroundColor: 'grey',
-        borderRadius: 4,
-        flexDirection: 'row',
-    },
+        container: {
+            
+        },
 
-})
+    })
