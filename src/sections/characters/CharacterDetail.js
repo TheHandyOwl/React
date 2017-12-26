@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
 import { Button } from 'RepasoParaProbar/src/widgets'
-
 import { Colors } from 'RepasoParaProbar/src/commons'
+
+import * as CharactersActions from 'RepasoParaProbar/src/redux/actions/characters'
 
 // Redux
 import { connect } from 'react-redux'
 
 class CharacterDetail extends Component {
 
-    onSubmit() {
+    onDelete(character) {
         console.log("Ha puslado el botón Eliminar")
+        this.props.deleteCharacter(character)
     }
 
     render() {
@@ -31,7 +33,7 @@ class CharacterDetail extends Component {
                 <View style={styles.buttonContainer}>
                     <Button
                         label       = {'Eliminar'}
-                        onPress     = { () => this.onSubmit(character) }
+                        onPress     = { () => this.onDelete(character) }
                         isFetching  = {this.props.isFetching}
                     />
                 </View>
@@ -50,11 +52,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        
+        deleteCharacter: (character) => {
+            character && dispatch(CharactersActions.deleteCharacter(character))
+        },
     }
 }
 
-export default connect (mapStateToProps, null) ( CharacterDetail )
+export default connect (mapStateToProps, mapDispatchToProps) ( CharacterDetail )
 
 const styles = StyleSheet.create({
     
