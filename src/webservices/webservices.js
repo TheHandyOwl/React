@@ -92,3 +92,23 @@ export function postAlternativo(url, data) {
 
     });
 }
+
+
+// Delete
+export function remove(url) {
+    return new Promise ( function(resolve, reject) {
+        axios.delete(url)
+            .then( (response) => {
+                console.log("webservie axios delete response: ", response);
+
+                if(response.data) {
+                    resolve ( response.data )
+                } else {
+                    reject ( response )
+                }
+            })
+            .catch( (error) => {
+                reject ( error )
+            })
+        })
+}
