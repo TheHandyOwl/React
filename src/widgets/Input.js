@@ -9,21 +9,21 @@ export default class Input extends Component {
         spinnerColor: 'white',
         label: '',
         onPress: () => {},
-            isFetching: false,
+        isFetching: false,
     }
-    
+
     render() {
-            return (
-                <View style={styles.container}>
-                </View>
-            )
-        }
+        return (
+            <View style={styles.container}>
+            </View>
+        )
     }
+}
 
-    const styles = StyleSheet.create({
+const styles = StyleSheet.create({
 
-        container: {
-            
-        },
+    container: {
 
-    })
+    },
+
+})
