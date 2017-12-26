@@ -3,7 +3,11 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { Colors } from 'RepasoParaProbar/src/commons'
 
-export default class CharacterNew extends Component {
+// Redux
+import { connect } from 'react-redux';
+import * as CharactersActions from 'RepasoParaProbar/src/redux/actions/characters'
+
+class CharacterNew extends Component {
 
     render() {
         return (
@@ -13,6 +17,20 @@ export default class CharacterNew extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+
+    }
+}
+
+export default connect (null, null) (CharacterNew)
 
 const styles = StyleSheet.create({
     container: {
