@@ -17,6 +17,8 @@ class CharacterNew extends Component {
         this.state = {
             name        : '',
             nameError   : '',
+            age         : '',
+            ageError    : '',
         }
 
     }
@@ -29,13 +31,22 @@ class CharacterNew extends Component {
         console.log("this.state.name: ", this.state.name)
         return (
             <View style={styles.container}>
-                <View style={styles.inputContainer}>    
+                <View style={styles.inputContainer}>
                     <Input
                         onChangeText    = { (v) => this.setState( { name: v } )}
                         value           = { this.state.name }
                         error           = { this.state.nameError }
                         label           = { 'Nombre:' }
                         placeholder     = { 'Eddard Stark' }
+                    />
+                </View>
+                <View style={styles.inputContainer}>
+                    <Input
+                        onChangeText    = { (v) => this.setState( { age: v } )}
+                        value           = { this.state.age }
+                        error           = { this.state.ageError }
+                        label           = { 'Edad:' }
+                        placeholder     = { '50' }
                     />
                 </View>
                 <View style={styles.buttonContainer}>
