@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View, Picker, TouchableOpacity, TextInput } from 'react-native'
 
 import { Colors } from 'RepasoParaProbar/src/commons'
 import { Input } from 'RepasoParaProbar/src/widgets'
 import { Button } from 'RepasoParaProbar/src/widgets'
+
+import ImagePicker from 'react-native-image-picker' 
 
 // Redux
 import { connect } from 'react-redux';
@@ -19,6 +21,7 @@ class CharacterNew extends Component {
             nameError   : '',
             age         : '',
             ageError    : '',
+            image       : null,
         }
 
     }
@@ -27,10 +30,65 @@ class CharacterNew extends Component {
         console.log("Dar de alta a", this.state.name)
     }
 
+    onSelectImageTapped() {
+        // More info on all the options is below in the README...just some common use cases shown here
+        var options = {
+            title: 'Seleccionar imagen',
+            storageOptions: {
+                skipBackup: true,
+                path: 'images'
+            }
+        };
+        
+        /**
+         * The first arg is the options object for customization
+         * (it can also be null or omitted for default options),
+         * The second arg is the callback which sends object:
+         * response (more info below in README)
+         */
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+        
+            if (response.didCancel) {
+            console.log('User cancelled image picker');
+            } else if (response.error) {
+            console.log('ImagePicker Error: ', response.error);
+            } else if (response.customButton) {
+            console.log('User tapped custom button: ', response.customButton);
+            } else {
+                //let source = { uri: response.uri };
+                // You can also display the image using data:
+                // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+                this.setState({
+                    //image: source
+                    image: response
+                });
+            }
+        });
+  
+    }
+
     render() {
-        console.log("this.state.name: ", this.state.name)
+        console.log("this.state.image:", this.state.image)
+        const imageUri = this.state.image ? { uri: this.state.image.uri } : null
+        const imageButtonText = this.state.image ? this.state.image.fileName : 'Elegir imagen'
         return (
             <View style={styles.container}>
+                
+                <View style={styles.imageContainer}>
+                    <Image
+                        source={imageUri}
+                        style={styles.imageContainerBackground}
+                        resizeMode={'cover'}
+                    />
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={ () => this.onSelectImageTapped() }
+                    >
+                        <Text style={styles.textButton}>{imageButtonText}</Text>
+                    </TouchableOpacity>
+                </View>
+
                 <View style={styles.inputContainer}>
                     <Input
                         onChangeText    = { (v) => this.setState( { name: v } )}
@@ -40,6 +98,7 @@ class CharacterNew extends Component {
                         placeholder     = { 'Eddard Stark' }
                     />
                 </View>
+
                 <View style={styles.inputContainer}>
                     <Input
                         onChangeText    = { (v) => this.setState( { age: v } )}
@@ -49,6 +108,7 @@ class CharacterNew extends Component {
                         placeholder     = { '50' }
                     />
                 </View>
+
                 <View style={styles.buttonContainer}>
                     <Button
                         label={'Guardar'}
@@ -56,6 +116,7 @@ class CharacterNew extends Component {
                         isFetching = { this.props.isFetching }
                     />
                 </View>
+
             </View>
         )
     }
@@ -86,7 +147,7 @@ const styles = StyleSheet.create({
     imageContainer: {
         width: '100%',
         height: 200,
-        backgroundColor: 'grey',
+        backgroundColor: Colors.grey,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -101,13 +162,13 @@ const styles = StyleSheet.create({
 
     button: {
         padding: 10,
-        borderColor: 'white',
+        borderColor: Colors.white,
         borderWidth: 1,
         borderRadius: 6,
     },
 
     textButton: {
-        color: 'white',
+        color: Colors.white,
         fontWeight: '600',
     },
 
