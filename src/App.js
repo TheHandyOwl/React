@@ -44,7 +44,7 @@ export default class App extends Component {
         <Text
           style={styles.addButtonText}
           onPress={ () => Actions.CharacterNew() }>
-          {'Pulsame'}
+          {'Añadir'}
         </Text>
       </TouchableOpacity>
     )

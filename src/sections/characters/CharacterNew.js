@@ -42,6 +42,7 @@ class CharacterNew extends Component {
                     <Button
                         label={'Guardar'}
                         onPress={ () => this.onSubmit() }
+                        isFetching = { this.props.isFetching }
                     />
                 </View>
             </View>
@@ -51,7 +52,7 @@ class CharacterNew extends Component {
 
 const mapStateToProps = (state) => {
     return {
-
+        isFetching: state.characters.isFetching,
     }
 }
 
@@ -61,7 +62,7 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect (null, null) (CharacterNew)
+export default connect (mapStateToProps, null) (CharacterNew)
 
 const styles = StyleSheet.create({
 
