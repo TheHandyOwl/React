@@ -1,5 +1,6 @@
 import * as types from '../types/characters'
 import { AsyncCalls, Colors } from 'RepasoParaProbar/src/commons';
+import { Actions } from 'react-native-router-flux';
 
 function updateCharactersList(value) {
     return {
@@ -44,5 +45,57 @@ export function fetchCharactersList(houseId) { // Función que carga del WS el l
             })
         // Aquí el dispatch se ejecuta de forma síncrona, e inmediata con response vacío
         //dispatch(updateCharactersList(response.records))
+    }
+}
+
+export function deleteCharacter(character) {
+    return (dispatch, getState) => {
+
+        dispatch(setCharactersFetching(true))
+
+        const state = getState()
+        const house = state.houses.item ? state.houses.item : null
+
+        AsyncCalls.deleteCharacter(character.id)
+            .then( response => {
+                dispatch(setCharactersFetching(false))
+                console.log("deleteCharacter response: ", response)
+                if (response.status && response.status == "ok") {
+                    dispatch(fetchCharactersList(house.id))
+                    dispatch(updateCharacterSelected(null))
+                    Actions.pop()
+                }
+            })
+            .catch( error => {
+                dispatch(setCharactersFetching(false))
+                console.log("deleteCharacter fetch error:", error)
+                dispatch(updateCharactersList([]))
+            })
+
+    }
+}
+
+export function postCharacter(data) {
+    return (dispatch, getState) => {
+
+        dispatch(setCharactersFetching(true))
+        const state = getState()
+        const house = state.houses.item
+        
+        AsyncCalls.addCharacter(data)
+            .then( response => {
+                dispatch(setCharactersFetching(false))
+                console.log("addCharacter response: ", response)
+                if (response.record) {
+                    dispatch(fetchCharactersList(house.id))
+                    dispatch(updateCharacterSelected(null))
+                    Actions.pop()
+                }
+            })
+            .catch( error => {
+                dispatch(setCharactersFetching(false))
+                console.log("addCharacter fetch error:", error)
+                dispatch(updateCharactersList([]))
+            })
     }
 }
