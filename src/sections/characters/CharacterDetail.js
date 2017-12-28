@@ -11,7 +11,6 @@ import { connect } from 'react-redux'
 class CharacterDetail extends Component {
 
     onDelete(character) {
-        console.log("Ha puslado el botón Eliminar")
         this.props.deleteCharacter(character)
     }
 

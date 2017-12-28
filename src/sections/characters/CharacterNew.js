@@ -26,8 +26,41 @@ class CharacterNew extends Component {
 
     }
 
+    validateForm() {
+
+        let valid = true
+        let errors = {}
+
+        if (!this.state.name) {
+            errors.name = 'Elige un nombre válido'
+            valid = false
+        }
+        if (!this.state.age) {
+            errors.age = 'Elige una edad válida'
+            valid = false
+        }
+        
+        this.setState({
+            nameError: errors.name ? errors.name : '',
+            ageError: errors.age ? errors.age : '',
+        })
+
+        return valid
+
+    }
+
     onSubmit() {
-        console.log("Dar de alta a", this.state.name)
+
+        if (this.validateForm()) {
+            const characterData = {
+                nombre: this.state.name,
+                edad: this.state.age ? this.state.age : null,
+                image: this.state.image ? 'data:image/jpeg;base64,' + this.state.image.data : null,
+                casa: this.props.house.id,
+            }
+
+            this.props.postCharacter(data)
+        }
     }
 
     onSelectImageTapped() {
@@ -69,7 +102,6 @@ class CharacterNew extends Component {
     }
 
     render() {
-        console.log("this.state.image:", this.state.image)
         const imageUri = this.state.image ? { uri: this.state.image.uri } : null
         const imageButtonText = this.state.image ? this.state.image.fileName : 'Elegir imagen'
         return (
@@ -124,13 +156,16 @@ class CharacterNew extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        house: state.houses.item,
         isFetching: state.characters.isFetching,
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-
+        postCharacter: (data) => {
+            dispatch(CharactersActions.postCharacter(data))
+        }
     }
 }
 

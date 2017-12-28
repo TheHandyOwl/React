@@ -50,7 +50,6 @@ export function fetchCharactersList(houseId) { // Función que carga del WS el l
 
 export function deleteCharacter(character) {
     return (dispatch, getState) => {
-        console.log("Llega el character:", character)
 
         dispatch(setCharactersFetching(true))
 
@@ -64,10 +63,7 @@ export function deleteCharacter(character) {
                 if (response.status && response.status == "ok") {
                     dispatch(fetchCharactersList(house.id))
                     dispatch(updateCharacterSelected(null))
-                    console.log("Dentro")
                     Actions.pop()
-                } else {
-                    console.log("Fuera")
                 }
             })
             .catch( error => {

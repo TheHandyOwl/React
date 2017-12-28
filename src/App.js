@@ -38,7 +38,6 @@ export default class App extends Component {
   }
 
   renderAddCharacterButton() {
-    console.log("Añadir personaje")
     return (
       <TouchableOpacity style={styles.addButton}>
         <Text
