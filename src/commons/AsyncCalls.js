@@ -1,4 +1,4 @@
-import { remove, fetch } from 'RepasoParaProbar/src/webservices/webservices'
+import { fetch, post, remove } from 'RepasoParaProbar/src/webservices/webservices'
 
 export function fetchHousesList() {
         const fetchUrl = '/casas'
@@ -13,4 +13,9 @@ export function fetchCharactersList(houseId) {
 export function deleteCharacter(characterId) {
         const fetchUrl = '/personajes/' + characterId
         return remove(fetchUrl)
+}
+
+export function addCharacter(data) {
+        const fetchUrl = '/personajes'
+        return post(fetchUrl, data)
 }

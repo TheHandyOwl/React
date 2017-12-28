@@ -59,7 +59,7 @@ class CharacterNew extends Component {
                 casa: this.props.house.id,
             }
 
-            this.props.postCharacter(data)
+            this.props.postCharacter(characterData)
         }
     }
 
@@ -169,7 +169,7 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect (mapStateToProps, null) (CharacterNew)
+export default connect (mapStateToProps, mapDispatchToProps) (CharacterNew)
 
 const styles = StyleSheet.create({
 

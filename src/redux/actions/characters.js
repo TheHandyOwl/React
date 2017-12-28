@@ -68,9 +68,34 @@ export function deleteCharacter(character) {
             })
             .catch( error => {
                 dispatch(setCharactersFetching(false))
-                console.log("deleteCharacter fetch error:", response)
+                console.log("deleteCharacter fetch error:", error)
                 dispatch(updateCharactersList([]))
             })
 
+    }
+}
+
+export function postCharacter(data) {
+    return (dispatch, getState) => {
+
+        dispatch(setCharactersFetching(true))
+        const state = getState()
+        const house = state.houses.item
+        
+        AsyncCalls.addCharacter(data)
+            .then( response => {
+                dispatch(setCharactersFetching(false))
+                console.log("addCharacter response: ", response)
+                if (response.record) {
+                    dispatch(fetchCharactersList(house.id))
+                    dispatch(updateCharacterSelected(null))
+                    Actions.pop()
+                }
+            })
+            .catch( error => {
+                dispatch(setCharactersFetching(false))
+                console.log("addCharacter fetch error:", error)
+                dispatch(updateCharactersList([]))
+            })
     }
 }
