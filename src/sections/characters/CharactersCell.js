@@ -14,7 +14,7 @@ export default class CharactersCell extends Component {
 
         const nombre = item.nombre ? item.nombre : ''
         const edad = item.edad ? item.edad : ''
-        const image = item.image_dir ? { uri: item.image_dir } : null
+        const image = item.image_dir ? { uri: item.image_dir } : require('RepasoParaProbar/src/resources/placeholder.png')
         
         return (
             <TouchableOpacity
@@ -23,8 +23,8 @@ export default class CharactersCell extends Component {
                 onLayout={ e => this.setState({ layout: e.nativeEvent.layout}) }
             >
                 <Image
-                    style={styles.image}
-                    source={image}
+                    style   = {styles.image}
+                    source  = {image}
                 />
 
                 <View style={styles.textContainer}>
