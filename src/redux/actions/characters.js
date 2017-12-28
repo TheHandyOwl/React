@@ -50,7 +50,6 @@ export function fetchCharactersList(houseId) { // Función que carga del WS el l
 
 export function deleteCharacter(character) {
     return (dispatch, getState) => {
-        console.log("Llega el character:", character)
 
         dispatch(setCharactersFetching(true))
 
@@ -64,17 +63,39 @@ export function deleteCharacter(character) {
                 if (response.status && response.status == "ok") {
                     dispatch(fetchCharactersList(house.id))
                     dispatch(updateCharacterSelected(null))
-                    console.log("Dentro")
                     Actions.pop()
-                } else {
-                    console.log("Fuera")
                 }
             })
             .catch( error => {
                 dispatch(setCharactersFetching(false))
-                console.log("deleteCharacter fetch error:", response)
+                console.log("deleteCharacter fetch error:", error)
                 dispatch(updateCharactersList([]))
             })
 
+    }
+}
+
+export function postCharacter(data) {
+    return (dispatch, getState) => {
+
+        dispatch(setCharactersFetching(true))
+        const state = getState()
+        const house = state.houses.item
+        
+        AsyncCalls.addCharacter(data)
+            .then( response => {
+                dispatch(setCharactersFetching(false))
+                console.log("addCharacter response: ", response)
+                if (response.record) {
+                    dispatch(fetchCharactersList(house.id))
+                    dispatch(updateCharacterSelected(null))
+                    Actions.pop()
+                }
+            })
+            .catch( error => {
+                dispatch(setCharactersFetching(false))
+                console.log("addCharacter fetch error:", error)
+                dispatch(updateCharactersList([]))
+            })
     }
 }

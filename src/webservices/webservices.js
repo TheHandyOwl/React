@@ -61,7 +61,7 @@ export function fetchAlternativo(url) {
 
 export function post(url, data) {
     return new Promise ( function(resolve, reject) {
-        axios.get(url)
+        axios.post(url, data)
             .then( (response) => {
                 console.log("webservie axios post response: ", response);
 
@@ -92,7 +92,6 @@ export function postAlternativo(url, data) {
 
     });
 }
-
 
 // Delete
 export function remove(url) {

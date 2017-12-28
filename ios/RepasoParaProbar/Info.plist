@@ -52,5 +52,13 @@
 			</dict>
 		</dict>
 	</dict>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>$(PRODUCT_NAME) necesita permisos para acceder a la galería de fotos</string>
+  <key>NSCameraUsageDescription</key>
+  <string>$(PRODUCT_NAME) necesita utilizar tu cámara</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>$(PRODUCT_NAME) necesita guardar fotos en tu galería de fotos</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>$(PRODUCT_NAME) necesita acceder al micrófono (para vídeos)</string>
 </dict>
 </plist>
