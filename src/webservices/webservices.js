@@ -12,7 +12,7 @@ export function fetch(url) {
     return new Promise ( function(resolve, reject) {
         axios.get(url)
             .then( (response) => {
-                console.log("webservie axios get response: ", response);
+                console.log("webservice axios get response: ", response);
 
                 if(response.data) {
                     resolve ( response.data )

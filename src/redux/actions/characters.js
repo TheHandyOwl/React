@@ -40,7 +40,7 @@ export function fetchCharactersList(houseId) { // Función que carga del WS el l
             })
             .catch( error => {
                 dispatch(setCharactersFetching(false))
-                console.log("CharactersList fetch error:", response)
+                console.log("CharactersList fetch error:", error)
                 dispatch(updateCharactersList([]))
             })
         // Aquí el dispatch se ejecuta de forma síncrona, e inmediata con response vacío
